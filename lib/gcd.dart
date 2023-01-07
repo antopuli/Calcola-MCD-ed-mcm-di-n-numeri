@@ -1,4 +1,4 @@
-int greatestCommonDivisor(List numbers) {
+Object greatestCommonDivisor(List numbers) {
   List divisors2D = [];
 
   var index = 0;
@@ -16,8 +16,17 @@ int greatestCommonDivisor(List numbers) {
     index++;
   }
 
-  final commonElements = divisors2D.fold<Set>(
-      divisors2D.first.toSet(), (a, b) => a.intersection(b.toSet()));
-
-  return commonElements.toList()[commonElements.toList().length - 1];
+  try {
+    return divisors2D
+        .fold<Set>(
+            divisors2D.first.toSet(), (a, b) => a.intersection(b.toSet()))
+        .toList()[divisors2D
+            .fold<Set>(
+                divisors2D.first.toSet(), (a, b) => a.intersection(b.toSet()))
+            .toList()
+            .length -
+        1];
+  } catch (e) {
+    return '∄';
+  }
 }
